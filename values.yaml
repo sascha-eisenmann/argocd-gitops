@@ -1,0 +1,7 @@
+argo-cd:
+  configs:
+    cm:
+      url: https://argocd.local
+      admin.enabled: "true"
+  crds:
+    keep: false
