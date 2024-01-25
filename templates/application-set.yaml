@@ -1,0 +1,33 @@
+{{- if (.Capabilities.APIVersions.Has "argoproj.io/v1alpha1/ApplicationSet") }}
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/sascha-eisenmann/argocd-gitops.git
+              revision: main
+              files:
+                - path: "./app-of-apps/*.yaml"
+          - list:
+              elements: []
+              elementsYaml: {{`{{ .environments.dev.namespaces | toJson }}`}}
+  template:
+    metadata:
+      name: {{`{{ .applicationName }}-{{ .namespace }}`}}
+    spec:
+      project: default
+      destination:
+        namespace: {{`{{ .namespace }}`}}
+        server: https://kubernetes.default.svc
+      source:
+        path: .
+        repoURL: {{`{{ .repoURL }}`}}
+        targetRevision: main
+{{- end}}

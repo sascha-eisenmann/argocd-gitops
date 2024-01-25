@@ -1,0 +1,8 @@
+applicationName: argocd
+repoURL: https://github.com/sascha-eisenmann/argocd-gitops.git
+environments:
+  dev:
+    namespaces:
+      gitops:
+        path: .
+        branch: main
