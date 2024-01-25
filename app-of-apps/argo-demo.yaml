@@ -1,0 +1,11 @@
+applicationName: argo-demo
+repoURL: https://github.com/sascha-eisenmann/argo-demo.git
+environments:
+  dev:
+    namespaces:
+     -  namespace: e1
+        path: .
+        branch: main
+     -  namespace: e2
+        path: .
+        branch: main
