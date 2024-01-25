@@ -5,7 +5,7 @@ argo-cd:
       admin.enabled: "true"
       exec.enabled: "true"
       application.links: |
-        - url: {{.app.spec.source.repoURL}}
+        - url: {{ .app.source.repoURL }}
           title: Github
   crds:
     keep: false
