@@ -3,6 +3,6 @@ repoURL: https://github.com/sascha-eisenmann/argocd-gitops.git
 environments:
   dev:
     namespaces:
-     -  argocd:
+     -  namespace: argocd
         path: .
         branch: main
