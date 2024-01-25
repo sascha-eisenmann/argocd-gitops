@@ -3,5 +3,9 @@ argo-cd:
     cm:
       url: https://argocd.local
       admin.enabled: "true"
+      exec.enabled: "true"
+      application.links: |
+        - url: {{.app.spec.source.repoURL}}
+          title: Github
   crds:
     keep: false
