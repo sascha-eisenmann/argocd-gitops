@@ -34,9 +34,9 @@ spec:
         targetRevision: main
   templatePatch: |
     spec:
-      {{- if .autoSync }}
+      `{{- if .autoSync }}`
       syncPolicy:
         automated:
           prune: true
-      {{- end }}
+      `{{- end }}`
 {{- end}}
