@@ -9,3 +9,6 @@ environments:
      -  namespace: e2
         path: .
         branch: main
+     -  namespace: e3
+        path: .
+        branch: main

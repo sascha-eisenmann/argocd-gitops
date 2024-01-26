@@ -23,7 +23,9 @@ spec:
       name: "{{`{{ .applicationName }}-{{ .namespace }}`}}"
     spec:
       project: default
-      syncPolicy: "{{`{{ .autoSync | ternary \"automated:\n  prune: true\" nil | fromYaml | toJson }}`}}"
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
       destination:
         namespace: "{{`{{ .namespace }}`}}"
         server: https://kubernetes.default.svc
