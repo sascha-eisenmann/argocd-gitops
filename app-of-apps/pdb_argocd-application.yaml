@@ -6,4 +6,4 @@ environments:
      -  namespace: argocd
         path: .
         branch: main
-        autoSync: true
+        autoSync: false

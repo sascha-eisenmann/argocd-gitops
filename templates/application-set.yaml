@@ -22,9 +22,6 @@ spec:
       name: "{{`{{ .applicationName }}-{{ .namespace }}`}}"
     spec:
       project: default
-      syncPolicy:
-        syncOptions:
-          - CreateNamespace=true
       destination:
         namespace: "{{`{{ .namespace }}`}}"
         server: https://kubernetes.default.svc
@@ -32,4 +29,13 @@ spec:
         path: .
         repoURL: "{{`{{ .repoURL }}`}}"
         targetRevision: main
+  templatePatch: |
+    {{`spec:
+        syncPolicy:
+          syncOptions:
+            - CreateNamespace=true
+        {{- if .autoSync }}
+          automated:
+            prune: true
+        {{- end }}`}}
 {{- end}}
