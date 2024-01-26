@@ -32,11 +32,11 @@ spec:
         path: .
         repoURL: "{{`{{ .repoURL }}`}}"
         targetRevision: main
-  templatePatch: |
+  templatePatch: "
     spec:
       `{{- if .autoSync }}`
       syncPolicy:
         automated:
           prune: true
-      `{{- end }}`
+      `{{- end }}`"
 {{- end}}
