@@ -33,7 +33,7 @@ spec:
     {{`spec:
         syncPolicy:
           syncOptions:
-            - CreateNamespace=false
+            - CreateNamespace=true
         {{- if .autoSync }}
           automated:
             prune: true
