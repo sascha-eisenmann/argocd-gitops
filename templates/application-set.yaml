@@ -6,7 +6,6 @@ metadata:
   namespace: argocd
 spec:
   goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
   generators:
     - matrix:
         generators:
@@ -33,11 +32,11 @@ spec:
         path: .
         repoURL: "{{`{{ .repoURL }}`}}"
         targetRevision: main
-
   templatePatch: |
     spec:
-    {{- if .autoSync }}
+      {{- if .autoSync }}
       syncPolicy:
-        automated: {}
-    {{- end}}
+        automated:
+          prune: true
+      {{- end }}
 {{- end}}
