@@ -33,4 +33,11 @@ spec:
         path: .
         repoURL: "{{`{{ .repoURL }}`}}"
         targetRevision: main
+
+  templatePatch: |
+    spec:
+    {{- if .autoSync }}
+      syncPolicy:
+        automated: {}
+    {{- end}}
 {{- end}}
