@@ -1,4 +1,4 @@
-{{- if (.Capabilities.APIVersions.Has "argoproj.io/v1beta1/ApplicationSet") }}
+{{- if (.Capabilities.APIVersions.Has "argoproj.io/v1alpha1/ApplicationSet") }}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
