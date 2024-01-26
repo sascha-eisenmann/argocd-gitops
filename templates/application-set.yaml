@@ -1,5 +1,4 @@
 {{- if (.Capabilities.APIVersions.Has "argoproj.io/v1alpha1/ApplicationSet") }}
-{% raw %}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -17,28 +16,27 @@ spec:
                 - path: "./app-of-apps/*.yaml"
           - list:
               elements: []
-              elementsYaml: {{ .environments.dev.namespaces | toJson }}
+              elementsYaml: "{{`{{ .environments.dev.namespaces | toJson }}`}}"
   template:
     metadata:
-      name: {{ .applicationName }}-{{ .namespace }}
+      name: "{{`{{ .applicationName }}-{{ .namespace }}`}}"
     spec:
       project: default
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
       destination:
-        namespace: {{ .namespace }}
+        namespace: "{{`{{ .namespace }}`}}"
         server: https://kubernetes.default.svc
       source:
         path: .
-        repoURL: {{ .repoURL }}
+        repoURL: "{{`{{ .repoURL }}`}}"
         targetRevision: main
   templatePatch: |
-    spec:
+    {{`spec:
       {{- if .autoSync }}
       syncPolicy:
         automated:
           prune: true
-      {{- end }}
-    {% endraw %}
+      {{- end }}`}}
 {{- end}}
